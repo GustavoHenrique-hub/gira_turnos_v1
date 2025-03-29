@@ -1,7 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import { TextField } from "@mui/material";
-import CardOfDays from "../../components/cards/cardOfDays/cardOfDays";
 
 function Home() {
   return (
