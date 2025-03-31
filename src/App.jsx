@@ -25,6 +25,9 @@ import ScheduleDataComponent from "./components/scheduleComponent/scheduleCompon
 import NavigationSideBarComponent, {
   NavigationSideBarItem,
 } from "./components/sideBarComponent/sideBarComponent.jsx";
+import ButtonsTopBarComponent, {
+  ButtonsTopBarItem,
+} from "./components/topBarComponent/topBarComponent.jsx";
 
 //Ícones
 import {
@@ -53,8 +56,8 @@ export default function App() {
           backgroundRepeat: "no-repeat",
           overflow: "hidden",
           display: "flex",
-          gap: "7.5%",
           alignItems: "center",
+          position: "relative", // Definir um container para o lado fixo
         }}
       >
         <NavigationSideBarComponent>
@@ -62,35 +65,78 @@ export default function App() {
             icon={<CalendarCheck size={20} />}
             text="Escala Técnicos"
             hoverText="Escala"
-            index={0} 
+            index={0}
           />
           <NavigationSideBarItem
             icon={<MailPlus size={20} />}
             text="Envio de e-mail"
             hoverText="E-mails"
-            index={1} 
+            index={1}
           />
           <NavigationSideBarItem
             icon={<CirclePlus size={20} />}
             text="Cadastros"
             hoverText="Cadastros"
-            index={2} 
+            index={2}
           />
           <hr className="my-3" />
           <NavigationSideBarItem
             icon={<Settings size={20} />}
             text="Configurações"
             hoverText="Configurações"
-            index={6} 
+            index={6}
           />
           <NavigationSideBarItem
             icon={<LifeBuoy size={20} />}
             text="Ajuda"
             hoverText="Ajuda"
-            index={7} 
+            index={7}
           />
         </NavigationSideBarComponent>
-        <ScheduleDataComponent />
+        <Box
+          sx={{
+            position: "absolute", // O componente de agenda fica fixo na tela
+            top: "2%",
+            left: "20%", // Ajusta conforme a largura da barra lateral
+            width: "80%", // Define a largura do agendamento
+            height: "100%", // A altura deve ocupar toda a tela
+            overflow: "auto", // Para que o conteúdo da agenda role se necessário
+          }}
+        >
+          <ButtonsTopBarComponent>
+            <ButtonsTopBarItem
+              icon={<CalendarCheck size={20} />}
+              text="Escala Técnicos"
+              hoverText="Escala"
+              index={0}
+            />
+            <ButtonsTopBarItem
+              icon={<MailPlus size={20} />}
+              text="Envio de e-mail"
+              hoverText="E-mails"
+              index={1}
+            />
+            <ButtonsTopBarItem
+              icon={<CirclePlus size={20} />}
+              text="Cadastros"
+              hoverText="Cadastros"
+              index={2}
+            />
+          </ButtonsTopBarComponent>
+        </Box>
+
+        <Box
+          sx={{
+            position: "absolute", // O componente de agenda fica fixo na tela
+            top: "16%",
+            left: "20%", // Ajusta conforme a largura da barra lateral
+            width: "80%", // Define a largura do agendamento
+            height: "100%", // A altura deve ocupar toda a tela
+            overflow: "auto", // Para que o conteúdo da agenda role se necessário
+          }}
+        >
+          <ScheduleDataComponent />
+        </Box>
       </Box>
     </Router>
   );

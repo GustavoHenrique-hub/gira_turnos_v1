@@ -40,12 +40,13 @@ export default function ScheduleDataComponent() {
   return (
     <>
       <ScheduleComponent
-        height={700}
-        width={1300}
+        height="80%" // Agora ocupa 100% da altura disponível
+        width="95%" // E também 100% da largura, adaptando-se ao espaço disponível
+        style={{ marginLeft: "0" }}
         selectedDate={new Date()}
         eventSettings={{ dataSource: data }}
         cellClick={handleCellClick}
-        popupOpen={handlePopupOpen} // impede o modal padrão
+        popupOpen={handlePopupOpen}
       >
         <ViewsDirective>
           <ViewDirective option="Week" startHour="00:00" endHour="24:00" />
