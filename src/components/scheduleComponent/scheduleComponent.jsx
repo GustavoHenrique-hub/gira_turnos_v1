@@ -20,6 +20,13 @@ export default function ScheduleDataComponent() {
       EndTime: new Date(2025, 2, 28, 12, 30),
       IsAllDay: false,
     },
+    {
+      Id: 2,
+      Subject: "Meeting - 1",
+      StartTime: new Date(2025, 2, 28, 10, 0),
+      EndTime: new Date(2025, 2, 28, 12, 30),
+      IsAllDay: false,
+    },
   ];
 
   const [showModal, setShowModal] = React.useState(false);
@@ -59,15 +66,21 @@ export default function ScheduleDataComponent() {
       {/* Modal customizado com Syncfusion Dialog (ou use outro se quiser) */}
       <DialogComponent
         visible={showModal}
-        width="400px"
+        width="700px"
+        height="400px"
         header="Nova Ação"
         close={() => setShowModal(false)}
         showCloseIcon={true}
         isModal={true}
       >
-        <div className="bg-green-200">
+        <div className="bg-green-200 w-[80%]">
           Você clicou em: <br />
           <strong>{cellInfo?.startTime.toString()}</strong>
+          <select className="bg-red-200 option-hover:bg-orange-200">
+            <option>Opção 1</option>
+            <option>Opção 2</option>
+            <option>Opção 3</option>
+          </select>
         </div>
       </DialogComponent>
     </>

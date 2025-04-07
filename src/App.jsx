@@ -32,7 +32,7 @@ import ButtonsTopBarComponent, {
 //Ícones
 import {
   CalendarCheck,
-  BarChart3,
+  CalendarPlus2 ,
   CirclePlus,
   MailPlus,
   Settings,
@@ -105,8 +105,8 @@ export default function App() {
         >
           <ButtonsTopBarComponent>
             <ButtonsTopBarItem
-              icon={<CalendarCheck size={20} />}
-              text="Escala Técnicos"
+              icon={<CalendarPlus2 size={20} />}
+              text="Nova visita"
               hoverText="Escala"
               index={0}
             />
