@@ -74,7 +74,7 @@ export function NavigationSideBarItem({ icon, text, index, hoverText, children }
   const isExpandedItem = expandedItem === index;
 
   return (
-    <div
+    <button
       onClick={() => {
         setActiveItem(index), setExpandedItem(index);
       }}
@@ -110,6 +110,6 @@ export function NavigationSideBarItem({ icon, text, index, hoverText, children }
           {hoverText}
         </span>
       )}
-    </div>
+    </button>
   );
 }

@@ -4,7 +4,7 @@ import { registerLicense } from "@syncfusion/ej2-base";
 
 // Registering Syncfusion license key
 registerLicense(
-  "Ngo9BigBOggjHTQxAR8/V1NNaF5cXmBCekxzWmFZfVtgfV9EY1ZUQmYuP1ZhSXxWdkZhUH9XcndQQGVaWEB9XUs="
+  "Ngo9BigBOggjHTQxAR8/V1NNaF5cXmBCf1FpRmJGdld5fUVHYVZUTXxaS00DNHVRdkdmWXtfcHVVRGNZWU12V0JWYUA="
 );
 
 // Estilos do Syncfusion
@@ -21,13 +21,15 @@ import "@syncfusion/ej2-react-schedule/styles/material.css";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import { Box } from "@mui/material";
-import ScheduleDataComponent from "./components/scheduleComponent/scheduleComponent.jsx";
+import ScheduleDataComponent from "./components/ScheduleComponent/scheduleComponent.jsx";
 import NavigationSideBarComponent, {
   NavigationSideBarItem,
-} from "./components/sideBarComponent/sideBarComponent.jsx";
+} from "./components/SideBarComponent/sideBarComponent.jsx";
 import ButtonsTopBarComponent, {
   ButtonsTopBarItem,
-} from "./components/topBarComponent/topBarComponent.jsx";
+} from "./components/TopBarComponent/topBarComponent.jsx";
+
+import { handleListVisitas } from "./services/GetService.js";
 
 //Ícones
 import {
@@ -118,8 +120,8 @@ export default function App() {
             />
             <ButtonsTopBarItem
               icon={<CirclePlus size={20} />}
-              text="Cadastros"
-              hoverText="Cadastros"
+              text="Atualizar Escala"
+              hoverText="Atualizar"
               index={2}
             />
           </ButtonsTopBarComponent>
