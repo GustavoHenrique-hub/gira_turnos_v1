@@ -25,16 +25,12 @@ import ScheduleDataComponent from "./components/ScheduleComponent/scheduleCompon
 import NavigationSideBarComponent, {
   NavigationSideBarItem,
 } from "./components/SideBarComponent/sideBarComponent.jsx";
-import ButtonsTopBarComponent, {
-  ButtonsTopBarItem,
-} from "./components/TopBarComponent/topBarComponent.jsx";
-
 import { handleListVisitas } from "./services/GetService.js";
 
 //Ícones
 import {
   CalendarCheck,
-  CalendarPlus2 ,
+  CalendarPlus2,
   CirclePlus,
   MailPlus,
   Settings,
@@ -98,39 +94,7 @@ export default function App() {
         <Box
           sx={{
             position: "absolute", // O componente de agenda fica fixo na tela
-            top: "2%",
-            left: "20%", // Ajusta conforme a largura da barra lateral
-            width: "80%", // Define a largura do agendamento
-            height: "100%", // A altura deve ocupar toda a tela
-            overflow: "auto", // Para que o conteúdo da agenda role se necessário
-          }}
-        >
-          <ButtonsTopBarComponent>
-            <ButtonsTopBarItem
-              icon={<CalendarPlus2 size={20} />}
-              text="Nova visita"
-              hoverText="Escala"
-              index={0}
-            />
-            <ButtonsTopBarItem
-              icon={<MailPlus size={20} />}
-              text="Envio de e-mail"
-              hoverText="E-mails"
-              index={1}
-            />
-            <ButtonsTopBarItem
-              icon={<CirclePlus size={20} />}
-              text="Atualizar Escala"
-              hoverText="Atualizar"
-              index={2}
-            />
-          </ButtonsTopBarComponent>
-        </Box>
-
-        <Box
-          sx={{
-            position: "absolute", // O componente de agenda fica fixo na tela
-            top: "16%",
+            top: "5%",
             left: "20%", // Ajusta conforme a largura da barra lateral
             width: "80%", // Define a largura do agendamento
             height: "100%", // A altura deve ocupar toda a tela
