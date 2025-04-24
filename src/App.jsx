@@ -25,7 +25,6 @@ import ScheduleDataComponent from "./components/ScheduleComponent/scheduleCompon
 import NavigationSideBarComponent, {
   NavigationSideBarItem,
 } from "./components/SideBarComponent/sideBarComponent.jsx";
-import { handleListVisitas } from "./services/GetService.js";
 
 //Ícones
 import {
@@ -39,6 +38,10 @@ import {
 
 const BackGroundImage =
   "https://imagem-data-base.vercel.app/background_liberty_3d.png";
+
+const handleTestOnConsole = () => {
+  console.log("CLICADO")
+}
 
 // Configuração principal com as rotas
 export default function App() {
@@ -81,14 +84,14 @@ export default function App() {
           <NavigationSideBarItem
             icon={<Settings size={20} />}
             text="Configurações"
-            hoverText="Configurações"
-            index={6}
+            hoverText="Configs."
+            index={3}
           />
           <NavigationSideBarItem
             icon={<LifeBuoy size={20} />}
             text="Ajuda"
             hoverText="Ajuda"
-            index={7}
+            index={4}
           />
         </NavigationSideBarComponent>
         <Box
