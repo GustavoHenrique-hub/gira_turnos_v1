@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { Tooltip } from "@mui/material";
+
 
 const SidebarContext = createContext();
 
@@ -31,12 +33,19 @@ export default function NavigationSideBarComponent({ children }) {
               }`}
             alt=""
           />
-          <Button
-            onClick={() => setExpanded((curr) => !curr)}
-            className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100 transition-all color-black"
-          >
-            {expanded ? <ChevronFirst /> : <ChevronLast />}
-          </Button>
+          <Tooltip
+            title={"Retrair / Expandir coluna"}
+            placement="right">
+            <Button
+              sx={{
+                color: 'black'
+              }}
+              onClick={() => setExpanded((curr) => !curr)}
+              className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100 transition-all color-black"
+            >
+              {expanded ? <ChevronFirst /> : <ChevronLast />}
+            </Button>
+          </Tooltip>
         </div>
 
         <SidebarContext.Provider
@@ -54,7 +63,7 @@ export default function NavigationSideBarComponent({ children }) {
 
         {/* Informações do usuário */}
         <div className="border-t border-gray-300 flex p-3">
-          <img
+          <Button
             src="https://ui-avatars.com/api/?name=Gustavo+Silva&background=B8FF98&color=002039&bold=true"
             alt=""
             className="w-10 h-10 rounded-md"
@@ -77,7 +86,7 @@ export default function NavigationSideBarComponent({ children }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={{ width: 400, padding: 2, backgroundColor: 'white', borderRadius: 2 }}>
-        <Typography variant="h6" id="modal-modal-title">
+          <Typography variant="h6" id="modal-modal-title">
             Modal Title
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -94,15 +103,16 @@ export function NavigationSideBarItem({ icon, text, index, hoverText, children }
   const { expanded, activeItem, setActiveItem, expandedItem, setExpandedItem, handleOpenModal } =
     useContext(SidebarContext);
 
-  const isActive = activeItem === index;
-
   return (
     <Button
+      sx={{
+        color: 'black'
+      }}
       onClick={() => {
         setActiveItem(index), setExpandedItem(index);
         if (index !== 0) {
           handleOpenModal(); // Chama a função para abrir o modal apenas quando index não for 0
-        } else{
+        } else {
           console.log(`Index ${activeItem}`)
         }
       }}
@@ -110,10 +120,6 @@ export function NavigationSideBarItem({ icon, text, index, hoverText, children }
         relative flex items-center py-2 px-3 my-1
         font-medium rounded-md cursor-pointer
         transition-colors group h-12
-        ${isActive === true
-          ? "bg-gradient-to-tr from-green-200 to-green-100 text-green-800"
-          : "hover:bg-green-50 text-[#002039]"
-        }
     `}
     >
       {icon}
