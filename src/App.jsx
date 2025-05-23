@@ -29,7 +29,6 @@ import NavigationSideBarComponent, {
 //Ícones
 import {
   CalendarCheck,
-  CalendarPlus2,
   CirclePlus,
   MailPlus,
   Settings,
