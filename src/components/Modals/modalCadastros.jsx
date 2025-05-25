@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
-export function ModalNewVisita({openModal, closeModal}) {
+export function ModalCadastros({openModal, closeModal}) {
   return (
    <Modal
         open={openModal}
@@ -13,7 +13,7 @@ export function ModalNewVisita({openModal, closeModal}) {
       >
         <Box sx={{ width: 400, padding: 2, backgroundColor: 'white', borderRadius: 2 }}>
           <Typography variant="h6" id="modal-modal-title">
-            VISITA MODAL
+            CADASTROS MODAL
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             This is the content inside the modal.

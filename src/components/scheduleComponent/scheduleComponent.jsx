@@ -41,8 +41,8 @@ export default function ScheduleDataComponent() {
     <>
       <ScheduleComponent
         height="90%"
-        width="95%"
-        style={{ marginLeft: "0" }}
+        width="80%"
+        style={{ marginLeft: "150px" }}
         selectedDate={new Date()}
         eventSettings={{ dataSource: visitasData }}
         readonly={true}

@@ -1,10 +1,17 @@
-import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react";
-import { useContext, createContext, useState } from "react";
+import { ChevronLast, ChevronFirst } from "lucide-react";
+import { useContext, createContext, useState, useRef } from "react";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+
+import { ModalNewVisita } from "../Modals/modalNewVisita";
 import { ModalNewEmail } from "../Modals/modalNewEmail";
+import { ModalCadastros } from "../Modals/modalCadastros";
+import { ModalConfigs } from "../Modals/modalConfigs";
+
 import { Tooltip } from "@mui/material";
-import { use } from "react";
+import ErrorAlert from "../Alerts/errorAlert";
+
+
 
 const logoipsum = "../src/assets/logoipsum-354.svg"
 
@@ -16,17 +23,37 @@ export default function NavigationSideBarComponent({ children }) {
   const [activeItem, setActiveItem] = useState(0);
   const [expandedItem, setExpandedItem] = useState();
 
-  const [openModal, setOpenModal] = useState(false); // Estado para controlar o modal
+  // Modal das visitas
+  const [modalVisita, setOpenModalVisita] = useState(false);
+  const handleOpenModal = () => setOpenModalVisita(true);
+  const handleCloseModal = () => setOpenModalVisita(false);
 
-  // Função para abrir o Modal
-  const handleOpenModal = () => setOpenModal(true);
-  const handleCloseModal = () => setOpenModal(false);
+  // Modal dos emails
+  const [modalEmail, setOpenModalEmail] = useState(false);
+  const handleOpenEmailModal = () => setOpenModalEmail(true);
+  const handleCloseEmailModal = () => setOpenModalEmail(false);
 
-  const [modalEmail, setModalEmail] = useState(true);
+  //Modal dos cadastros
+  const [modalCadastros, setOpenModalCadastro] = useState(false);
+  const handleOpenCadastrosModal = () => setOpenModalCadastro(true);
+  const handleCloseCadastrosModal = () => setOpenModalCadastro(false);
 
-  // Abre o modal dos emails
-  const handleOpenEmailModal = () => setModalEmail(true);
-  const handleCloseEmailModal = () => setModalEmail(false)
+  //Modal das configurações
+  const [modalConfigs, setOpenModalConfigs] = useState(false)
+  
+
+  // Alert escala
+  const [alerts, setAlerts] = useState([]);          // array de { id, message }
+  let nextId = useRef(0);                            // para gerar IDs únicos
+
+  const handleOpenAlert = (message) => {
+    const id = nextId.current++;
+    setAlerts((prev) => [...prev, { id, message }]);
+  };
+
+  const handleCloseAlert = (id) => {
+    setAlerts((prev) => prev.filter((a) => a.id !== id));
+  };
 
   return (
     <Box className="h-screen">
@@ -60,8 +87,11 @@ export default function NavigationSideBarComponent({ children }) {
           value={{
             setActiveItem,
             setExpandedItem,
+            expanded,
             handleOpenModal,
-            handleOpenEmailModal
+            handleOpenEmailModal,
+
+            handleOpenAlert,
           }}
         >
           <ul className="flex-1 px-3">{children}</ul>
@@ -85,13 +115,21 @@ export default function NavigationSideBarComponent({ children }) {
           </div>
         </div>
       </nav>
-      <ModalNewEmail openModal={modalEmail} closeModal={handleCloseEmailModal}/>
+      <ModalNewEmail openModal={modalEmail} closeModal={handleCloseEmailModal} />
+      {alerts.map(({ id, message }) => (
+        <ErrorAlert
+          key={id}
+          openAlert={true}
+          closeAlert={() => handleCloseAlert(id)}
+          message={message}
+        />
+      ))}
     </Box>
   );
 }
 
 export function NavigationSideBarItem({ icon, text, index, hoverText, children }) {
-  const { expanded, activeItem, setActiveItem, expandedItem, setExpandedItem, handleOpenModal } =
+  const { expanded, activeItem, setActiveItem, expandedItem, setExpandedItem, handleOpenModal, handleOpenEmailModal, handleOpenAlert } =
     useContext(SidebarContext);
 
   return (
@@ -101,9 +139,27 @@ export function NavigationSideBarItem({ icon, text, index, hoverText, children }
       }}
       onClick={() => {
         setActiveItem(index), setExpandedItem(index);
-        if (index !== 0) {
-          handleOpenEmailModal(); // Chama a função para abrir o modal apenas quando index não for 0
-        } else {
+        switch (index) {
+          case 0:
+            handleOpenAlert("Caro usuário, você já está na aba da Escala!");
+            break;
+          case 1:
+            handleOpenEmailModal(); // Chama a função para abrir o modal dos emails apenas quando index for 1
+            break;
+          case 2:
+            handleOpenEmailModal(); // Chama a função para abrir o modal dos cadastros apenas quando index for 2
+            break;
+          case 3:
+            handleOpenEmailModal(); // Chama a função para abrir o modal das configurações apenas quando index for 3
+            break;
+          case 4:
+            handleOpenEmailModal(); // Chama a função para abrir o modal de ajuda apenas quando index for 4
+            break;
+          case 5:
+            handleOpenEmailModal(); // Chama a função para abrir o modal de ajuda apenas quando index for 5
+            break;
+        }
+        {
           console.log(`Index ${activeItem}`)
         }
       }}

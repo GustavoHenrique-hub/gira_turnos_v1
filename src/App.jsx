@@ -22,9 +22,7 @@ import "@syncfusion/ej2-react-schedule/styles/material.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Box } from "@mui/material";
 import ScheduleDataComponent from "./components/ScheduleComponent/scheduleComponent.jsx";
-import NavigationSideBarComponent, {
-  NavigationSideBarItem,
-} from "./components/SideBarComponent/sideBarComponent.jsx";
+import NavigationSideBarComponent, { NavigationSideBarItem } from "../src/components/SideBarComponent/sideBarComponent.jsx";
 
 //Ícones
 import {
@@ -33,6 +31,7 @@ import {
   MailPlus,
   Settings,
   LifeBuoy,
+  CalendarPlus2,
 } from "lucide-react";
 
 const BackGroundImage =
@@ -42,7 +41,7 @@ const handleTestOnConsole = () => {
   console.log("CLICADO")
 }
 
-// Configuração principal com as rotas
+
 export default function App() {
   return (
     <Router>
@@ -62,32 +61,38 @@ export default function App() {
       >
         <NavigationSideBarComponent>
           <NavigationSideBarItem
-            icon={<CalendarCheck size={20} />}
+            icon={<CalendarCheck size={30} />}
             text="Escala Técnicos"
             hoverText="Escala"
             index={0}
           />
           <NavigationSideBarItem
-            icon={<MailPlus size={20} />}
+            icon={<CalendarPlus2 size={30}/>}
+            text="Nova Visita"
+            hoverText="Nova Visita"
+            index={5}
+          />
+          <NavigationSideBarItem
+            icon={<MailPlus size={30} />}
             text="Envio de e-mail"
             hoverText="E-mails"
             index={1}
           />
           <NavigationSideBarItem
-            icon={<CirclePlus size={20} />}
+            icon={<CirclePlus size={30} />}
             text="Cadastros"
             hoverText="Cadastros"
             index={2}
           />
           <hr className="my-3" />
           <NavigationSideBarItem
-            icon={<Settings size={20} />}
+            icon={<Settings size={30} />}
             text="Configurações"
             hoverText="Configs."
             index={3}
           />
           <NavigationSideBarItem
-            icon={<LifeBuoy size={20} />}
+            icon={<LifeBuoy size={30} />}
             text="Ajuda"
             hoverText="Ajuda"
             index={4}
