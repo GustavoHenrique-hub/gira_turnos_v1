@@ -10,6 +10,7 @@ import { ModalConfigs } from "../Modals/modalConfigs";
 
 import { Tooltip } from "@mui/material";
 import ErrorAlert from "../Alerts/errorAlert";
+import ImageButtonComponent from "../Buttons/imageButton";
 
 
 
@@ -40,7 +41,7 @@ export default function NavigationSideBarComponent({ children }) {
 
   //Modal das configurações
   const [modalConfigs, setOpenModalConfigs] = useState(false)
-  
+
 
   // Alert escala
   const [alerts, setAlerts] = useState([]);          // array de { id, message }
@@ -90,7 +91,6 @@ export default function NavigationSideBarComponent({ children }) {
             expanded,
             handleOpenModal,
             handleOpenEmailModal,
-
             handleOpenAlert,
           }}
         >
@@ -98,14 +98,16 @@ export default function NavigationSideBarComponent({ children }) {
         </SidebarContext.Provider>
 
         {/* Informações do usuário */}
-        <div className="border-t border-gray-300 flex p-3">
-          <img
-            src="https://ui-avatars.com/api/?name=Gustavo+Silva&background=B8FF98&color=002039&bold=true"
-            alt=""
-            className="w-10 h-10 rounded-md"
-          />
+        <div className={`border-t border-gray-300 flex justify-around flex p-3`}>
+          <div className={`${expanded ? "ml-0" : "ml-1"}`}>
+            <Tooltip
+              title={"Retrair / Expandir coluna"}
+              placement="right">
+              <ImageButtonComponent />
+            </Tooltip>
+          </div>
           <div
-            className={`flex justify-between items-center overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"
+            className={`flex items-center overflow-hidden transition-all ${expanded ? "w-52" : "w-0"
               }`}
           >
             <div className="leading-4">
