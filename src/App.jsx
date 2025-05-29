@@ -70,32 +70,32 @@ export default function App() {
             icon={<CalendarPlus2 size={30}/>}
             text="Nova Visita"
             hoverText="Nova Visita"
-            index={5}
+            index={1}
           />
           <NavigationSideBarItem
             icon={<MailPlus size={30} />}
             text="Envio de e-mail"
             hoverText="E-mails"
-            index={1}
+            index={2}
           />
           <NavigationSideBarItem
             icon={<CirclePlus size={30} />}
             text="Cadastros"
             hoverText="Cadastros"
-            index={2}
+            index={3}
           />
           <hr className="my-3" />
           <NavigationSideBarItem
             icon={<Settings size={30} />}
             text="Configurações"
             hoverText="Configs."
-            index={3}
+            index={4}
           />
           <NavigationSideBarItem
             icon={<LifeBuoy size={30} />}
             text="Ajuda"
             hoverText="Ajuda"
-            index={4}
+            index={5}
           />
         </NavigationSideBarComponent>
         <Box

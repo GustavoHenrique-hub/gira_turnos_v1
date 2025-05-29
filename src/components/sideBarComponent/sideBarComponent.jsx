@@ -8,7 +8,7 @@ import { ModalNewEmail } from "../Modals/modalNewEmail";
 import { ModalCadastros } from "../Modals/modalCadastros";
 import { ModalConfigs } from "../Modals/modalConfigs";
 
-import { Tooltip } from "@mui/material";
+import { Modal, Tooltip } from "@mui/material";
 import ErrorAlert from "../Alerts/errorAlert";
 import ImageButtonComponent from "../Buttons/imageButton";
 
@@ -26,8 +26,8 @@ export default function NavigationSideBarComponent({ children }) {
 
   // Modal das visitas
   const [modalVisita, setOpenModalVisita] = useState(false);
-  const handleOpenModal = () => setOpenModalVisita(true);
-  const handleCloseModal = () => setOpenModalVisita(false);
+  const handleOpenVisitaModal = () => setOpenModalVisita(true);
+  const handleCloseVisitaModal = () => setOpenModalVisita(false);
 
   // Modal dos emails
   const [modalEmail, setOpenModalEmail] = useState(false);
@@ -41,6 +41,8 @@ export default function NavigationSideBarComponent({ children }) {
 
   //Modal das configurações
   const [modalConfigs, setOpenModalConfigs] = useState(false)
+  const handleOpenConfigsModal = () => setOpenModalConfigs(true);
+  const handleCloseConfigsModal = () => setOpenModalConfigs(false);
 
 
   // Alert escala
@@ -89,8 +91,10 @@ export default function NavigationSideBarComponent({ children }) {
             setActiveItem,
             setExpandedItem,
             expanded,
-            handleOpenModal,
+            handleOpenVisitaModal,
             handleOpenEmailModal,
+            handleOpenCadastrosModal,
+            handleOpenConfigsModal,
             handleOpenAlert,
           }}
         >
@@ -117,7 +121,12 @@ export default function NavigationSideBarComponent({ children }) {
           </div>
         </div>
       </nav>
+      
       <ModalNewEmail openModal={modalEmail} closeModal={handleCloseEmailModal} />
+      <ModalNewVisita openModal={modalVisita} closeModal={handleCloseVisitaModal} />
+      <ModalCadastros openModal={modalCadastros} closeModal={handleCloseCadastrosModal} />
+      <ModalConfigs openModal={modalConfigs} closeModal={handleOpenConfigsModal} />
+
       {alerts.map(({ id, message }) => (
         <ErrorAlert
           key={id}
@@ -131,8 +140,18 @@ export default function NavigationSideBarComponent({ children }) {
 }
 
 export function NavigationSideBarItem({ icon, text, index, hoverText, children }) {
-  const { expanded, activeItem, setActiveItem, expandedItem, setExpandedItem, handleOpenModal, handleOpenEmailModal, handleOpenAlert } =
-    useContext(SidebarContext);
+  const {
+    expanded,
+    activeItem,
+    setActiveItem,
+    expandedItem,
+    setExpandedItem,
+    handleOpenVisitaModal,
+    handleOpenEmailModal,
+    handleOpenCadastrosModal,
+    handleOpenConfigsModal,
+    handleOpenAlert
+  } = useContext(SidebarContext);
 
   return (
     <Button
@@ -146,19 +165,19 @@ export function NavigationSideBarItem({ icon, text, index, hoverText, children }
             handleOpenAlert("Caro usuário, você já está na aba da Escala!");
             break;
           case 1:
-            handleOpenEmailModal(); // Chama a função para abrir o modal dos emails apenas quando index for 1
+            handleOpenVisitaModal(); // Chama a função para abrir o modal dos visita apenas quando index for 1
             break;
           case 2:
-            handleOpenEmailModal(); // Chama a função para abrir o modal dos cadastros apenas quando index for 2
+            handleOpenEmailModal(); // Chama a função para abrir o modal dos emails apenas quando index for 2
             break;
           case 3:
-            handleOpenEmailModal(); // Chama a função para abrir o modal das configurações apenas quando index for 3
+            handleOpenCadastrosModal(); // Chama a função para abrir o modal das cadastros apenas quando index for 3
             break;
           case 4:
-            handleOpenEmailModal(); // Chama a função para abrir o modal de ajuda apenas quando index for 4
+            handleOpenConfigsModal(); // Chama a função para abrir o modal de configurações apenas quando index for 4
             break;
           case 5:
-            handleOpenEmailModal(); // Chama a função para abrir o modal de ajuda apenas quando index for 5
+            handleOpenVisitaModal(); // Chama a função para abrir o modal de ajuda apenas quando index for 5
             break;
         }
         {
