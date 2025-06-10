@@ -14,14 +14,15 @@ export default function ScheduleDataComponent() {
     try {
       const response = await fetch(urlToListVisitas);
       const data = await response.json();
-      const tempVisitasArray = data.map((item) => ({
-        Id: item.id,
-        Subject: `${item.tecnico.nome} - ${item.unidade.nome}`, // Ou qualquer outro campo que queira usar para o título
-        StartTime: new Date(item.dataHoraInicioVisita), // Usando dataHoraInicio da API
-        EndTime: new Date(item.dataHoraFimVisita), // Usando dataHoraFim da API
-        IsAllDay: false,
-        Description: `${item.objetivoDaVisita}`
-      }));
+      const tempVisitasArray = data.map((item) => (
+        {
+          Id: item.id,
+          Subject: `${item.tecnico.nome} - ${item.unidade.nome}`,
+          StartTime: new Date(item.dataHoraInicioVisita),
+          EndTime: new Date(item.dataHoraFimVisita),
+          IsAllDay: false,
+          Description: `${item.objetivoDaVisita}`,
+        }));
       const consoleVisitasArray = data.map((item) => (
         item
       ))
@@ -35,7 +36,7 @@ export default function ScheduleDataComponent() {
 
   useEffect(() => {
     fetchVisitas();
-  }, []); 
+  }, []);
 
   return (
     <>
@@ -48,11 +49,10 @@ export default function ScheduleDataComponent() {
         readonly={true}
       >
         <ViewsDirective>
-          <ViewDirective option="Week" startHour="00:00" endHour="24:00" />
           <ViewDirective option="Month" />
           <ViewDirective option="MonthAgenda" />
         </ViewsDirective>
-        <Inject services={[Week, Month, MonthAgenda]} />
+        <Inject services={[Month, MonthAgenda]} />
       </ScheduleComponent>
     </>
   );

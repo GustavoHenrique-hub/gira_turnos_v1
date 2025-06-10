@@ -125,7 +125,7 @@ export default function NavigationSideBarComponent({ children }) {
       <ModalNewEmail openModal={modalEmail} closeModal={handleCloseEmailModal} />
       <ModalNewVisita openModal={modalVisita} closeModal={handleCloseVisitaModal} />
       <ModalCadastros openModal={modalCadastros} closeModal={handleCloseCadastrosModal} />
-      <ModalConfigs openModal={modalConfigs} closeModal={handleOpenConfigsModal} />
+      <ModalConfigs openModal={modalConfigs} closeModal={handleCloseConfigsModal} />
 
       {alerts.map(({ id, message }) => (
         <ErrorAlert
