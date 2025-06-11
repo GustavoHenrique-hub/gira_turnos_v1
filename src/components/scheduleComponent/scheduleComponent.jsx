@@ -1,11 +1,10 @@
-import * as React from "react";
 import { useState, useEffect } from "react";
-import { ScheduleComponent, Week, Month, MonthAgenda, ViewsDirective, ViewDirective, Inject } from "@syncfusion/ej2-react-schedule";
+import { ScheduleComponent, Month, MonthAgenda, ViewsDirective, ViewDirective, Inject } from "@syncfusion/ej2-react-schedule";
 import { DialogComponent } from "@syncfusion/ej2-react-popups";
 
 export default function ScheduleDataComponent() {
   const [visitasData, setVisitasData] = useState([]);
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   // Função para buscar as visitas da API
   const fetchVisitas = async () => {
@@ -48,11 +47,10 @@ export default function ScheduleDataComponent() {
         readonly={true}
       >
         <ViewsDirective>
-          <ViewDirective option="Week" startHour="00:00" endHour="24:00" />
           <ViewDirective option="Month" />
           <ViewDirective option="MonthAgenda" />
         </ViewsDirective>
-        <Inject services={[Week, Month, MonthAgenda]} />
+        <Inject services={[Month, MonthAgenda]} />
       </ScheduleComponent>
     </>
   );
