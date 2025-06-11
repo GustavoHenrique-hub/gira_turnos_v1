@@ -13,14 +13,15 @@ export default function ScheduleDataComponent() {
     try {
       const response = await fetch(urlToListVisitas);
       const data = await response.json();
-      const tempVisitasArray = data.map((item) => ({
-        Id: item.id,
-        Subject: `${item.tecnico.nome} - ${item.unidade.nome}`, // Ou qualquer outro campo que queira usar para o título
-        StartTime: new Date(item.dataHoraInicioVisita), // Usando dataHoraInicio da API
-        EndTime: new Date(item.dataHoraFimVisita), // Usando dataHoraFim da API
-        IsAllDay: false,
-        Description: `${item.objetivoDaVisita}`
-      }));
+      const tempVisitasArray = data.map((item) => (
+        {
+          Id: item.id,
+          Subject: `${item.tecnico.nome} - ${item.unidade.nome}`,
+          StartTime: new Date(item.dataHoraInicioVisita),
+          EndTime: new Date(item.dataHoraFimVisita),
+          IsAllDay: false,
+          Description: `${item.objetivoDaVisita}`,
+        }));
       const consoleVisitasArray = data.map((item) => (
         item
       ))
@@ -34,7 +35,7 @@ export default function ScheduleDataComponent() {
 
   useEffect(() => {
     fetchVisitas();
-  }, []); 
+  }, []);
 
   return (
     <>
