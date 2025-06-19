@@ -5,6 +5,11 @@ import Button from '@mui/material/Button';
 import AutocompleteTecnico, { AutocompleteTurno, AutocompleteUnidade, AutocompleteLocalizacao } from '../AutoCompletes/autoCompleteNewVisita';
 import { X } from 'lucide-react';
 
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
+
+import SubmitButton from '../Buttons/submitButton'
+
 export function ModalNewVisita({ openModal, closeModal }) {
   return (
     <Modal
@@ -45,6 +50,13 @@ export function ModalNewVisita({ openModal, closeModal }) {
               <Box className='flex flex-col w-[50%] h-[50%] gap-5'>
                 <AutocompleteTecnico />
                 <AutocompleteUnidade />
+                <SubmitButton onClick={closeModal}
+                  sx={{ mt: 2 }}
+                  startIcon={<SaveOutlinedIcon />}
+                  variant="outlined"
+                >
+                  Enviar
+                </SubmitButton>
               </Box>
               <Box className='flex flex-col w-[50%] h-[50%] gap-5'>
                 <AutocompleteTurno />
@@ -74,6 +86,7 @@ export function ModalNewVisita({ openModal, closeModal }) {
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 Right
               </Typography>
+
             </Box>
           </Box>
         </Box>

@@ -104,11 +104,7 @@ export default function NavigationSideBarComponent({ children }) {
         {/* Informações do usuário */}
         <div className={`border-t border-gray-300 flex justify-around flex p-3`}>
           <div className={`${expanded ? "ml-0" : "ml-1"}`}>
-            <Tooltip
-              title={"Retrair / Expandir coluna"}
-              placement="right">
-              <ImageButtonComponent />
-            </Tooltip>
+            <ImageButtonComponent />
           </div>
           <div
             className={`flex items-center overflow-hidden transition-all ${expanded ? "w-52" : "w-0"
@@ -121,7 +117,7 @@ export default function NavigationSideBarComponent({ children }) {
           </div>
         </div>
       </nav>
-      
+
       <ModalNewEmail openModal={modalEmail} closeModal={handleCloseEmailModal} />
       <ModalNewVisita openModal={modalVisita} closeModal={handleCloseVisitaModal} />
       <ModalCadastros openModal={modalCadastros} closeModal={handleCloseCadastrosModal} />
