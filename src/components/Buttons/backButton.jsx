@@ -6,11 +6,10 @@ const BackButton = styled(Button)(({ theme }) => ({
     borderColor: 'blue',
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)", 
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.5)', 
-    height: '50px',
+    height: '35px',
     "&:hover": {
-      backgroundColor: "rgba(0, 0, 255, 0.1)",
+      backgroundColor: "rgba(0, 0, 255, 0.3)",
       borderColor: 'blue',
-      color: 'black', 
     },
   }));
 

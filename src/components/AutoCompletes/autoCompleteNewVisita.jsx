@@ -288,6 +288,7 @@ export default function AutocompleteTecnico() {
     return (
         <Autocomplete
             options={tecnico}
+            sx={{width: '30%'}}
             // 2) exibir no campo somente o ID
             getOptionLabel={opt => `${opt.id} – ${opt.nome}`}
             // 3) controlar o valor
@@ -311,8 +312,9 @@ export function AutocompleteUnidade() {
     return (
         <Autocomplete
             options={unidade}
+            sx={{width: '30%'}}
             // 2) exibir no campo somente o ID
-            getOptionLabel={opt => `${opt.id} – ${opt.unidade}`}
+            getOptionLabel={opt => `${opt.id} | ${opt.unidade}`}
             // 3) controlar o valor
             value={selectedFilm}
             onChange={(_, newValue) => {
@@ -334,6 +336,7 @@ export function AutocompleteTurno() {
     return (
         <Autocomplete
             options={turno}
+            sx={{width: '30%'}}
             // 2) exibir no campo somente o ID
             getOptionLabel={opt => `${opt.id} – ${opt.turno}`}
             // 3) controlar o valor
@@ -357,6 +360,7 @@ export function AutocompleteLocalizacao() {
     return (
         <Autocomplete
             options={localizacao}
+            sx={{width: '30%'}}
             // 2) exibir no campo somente o ID
             getOptionLabel={opt => `${opt.id} – ${opt.localizacao}`}
             // 3) controlar o valor
