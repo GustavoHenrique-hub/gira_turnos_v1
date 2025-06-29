@@ -250,6 +250,11 @@ const localizacao = [
   }
 ]
 
+const escala = [
+  {id: 1, escala: "5x2"},
+  {id: 2, escala: "12x36"}
+]
+
 const AutocompleteToUse = styled(Autocomplete)(({ theme }) => ({
   borderColor: 'black',
   '& .MuiOutlinedInput-root': {
@@ -264,7 +269,7 @@ const AutocompleteToUse = styled(Autocomplete)(({ theme }) => ({
 
 export default function AutocompleteTecnico() {
 
-  const [selectedFilm, setSelectedFilm] = React.useState(null);
+  const [tempState, setTempState] = React.useState(null);
 
   return (
     <AutocompleteToUse
@@ -273,10 +278,10 @@ export default function AutocompleteTecnico() {
       // 2) exibir no campo somente o ID
       getOptionLabel={opt => `${opt.id} | ${opt.nome}`}
       // 3) controlar o valor
-      value={selectedFilm}
+      value={tempState}
       onChange={(_, newValue) => {
         // newValue é o objeto completo ou null
-        setSelectedFilm(newValue);
+        setTempState(newValue);
         console.log(newValue.id)
       }}
       renderInput={(params) => (
@@ -288,7 +293,7 @@ export default function AutocompleteTecnico() {
 
 export function AutocompleteUnidade() {
 
-  const [selectedFilm, setSelectedFilm] = React.useState(null);
+  const [tempState, setTempState] = React.useState(null);
 
   return (
     <AutocompleteToUse
@@ -299,10 +304,10 @@ export function AutocompleteUnidade() {
       // 2) exibir no campo somente o ID
       getOptionLabel={opt => `${opt.id} | ${opt.nome}`}
       // 3) controlar o valor
-      value={selectedFilm}
+      value={tempState}
       onChange={(_, newValue) => {
         // newValue é o objeto completo ou null
-        setSelectedFilm(newValue);
+        setTempState(newValue);
         console.log(newValue.id)
       }}
       renderInput={(params) => (
@@ -314,7 +319,7 @@ export function AutocompleteUnidade() {
 
 export function AutocompleteTurno() {
 
-  const [selectedFilm, setSelectedFilm] = React.useState(null);
+  const [tempState, setTempState] = React.useState(null);
 
   return (
     <AutocompleteToUse
@@ -323,10 +328,10 @@ export function AutocompleteTurno() {
       // 2) exibir no campo somente o ID
       getOptionLabel={opt => `${opt.id} | ${opt.turno}`}
       // 3) controlar o valor
-      value={selectedFilm}
+      value={tempState}
       onChange={(_, newValue) => {
         // newValue é o objeto completo ou null
-        setSelectedFilm(newValue);
+        setTempState(newValue);
         console.log(newValue.id)
       }}
       renderInput={(params) => (
@@ -338,7 +343,7 @@ export function AutocompleteTurno() {
 
 export function AutocompleteLocalizacao() {
 
-  const [selectedFilm, setSelectedFilm] = React.useState(null);
+  const [tempState, setTempState] = React.useState(null);
 
   return (
     <AutocompleteToUse
@@ -347,14 +352,40 @@ export function AutocompleteLocalizacao() {
       // 2) exibir no campo somente o ID
       getOptionLabel={opt => `${opt.id} | ${opt.localizacao}`}
       // 3) controlar o valor
-      value={selectedFilm}
+      value={tempState}
       onChange={(_, newValue) => {
         // newValue é o objeto completo ou null
-        setSelectedFilm(newValue);
+        setTempState(newValue);
         console.log(newValue.id)
       }}
       renderInput={(params) => (
         <TextField {...params} label="Localizacao" variant="outlined" />
+      )}
+    />
+  );
+}
+
+export function AutocompleteEscala() {
+
+  const [tempState, setTempState] = React.useState(null);
+
+  return (
+    <AutocompleteToUse
+      options={escala}
+      sx={{
+        width: '30%',
+      }}
+      // 2) exibir no campo somente o ID
+      getOptionLabel={opt => `${opt.id} | ${opt.escala}`}
+      // 3) controlar o valor
+      value={tempState}
+      onChange={(_, newValue) => {
+        // newValue é o objeto completo ou null
+        setTempState(newValue);
+        console.log(newValue.id)
+      }}
+      renderInput={(params) => (
+        <TextField {...params} label="Escala" variant="outlined" />
       )}
     />
   );

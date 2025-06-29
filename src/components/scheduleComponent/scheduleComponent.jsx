@@ -1,67 +1,62 @@
 import { useState, useEffect } from "react";
 import { ScheduleComponent, Month, MonthAgenda, ViewsDirective, ViewDirective, Inject } from "@syncfusion/ej2-react-schedule";
-import { DialogComponent } from "@syncfusion/ej2-react-popups";
+import LoadingOverlay from "../Loading/loadingOverlay"
+
+import { handleVisitaPaginator } from "../../services/GetService"
 
 export default function ScheduleDataComponent() {
   const [visitasData, setVisitasData] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  // Função para buscar as visitas da API
-  const fetchVisitas = async () => {
-    const urlToListVisitas = `http://localhost:8080/visita/listAllVisita`;
-
+  const handleFetchVisitaPaginator = async (start, end) => {
+    setLoading(true);
+    setError(null);
     try {
-      const response = await fetch(urlToListVisitas);
-      const data = await response.json();
-      const tempVisitasArray = data.map((item) => (
-        {
-          Id: item.id,
-          Subject: `${item.tecnico.nome} - ${item.unidade.nome}`,
-          StartTime: new Date(item.dataHoraInicioVisita),
-          EndTime: new Date(item.dataHoraFimVisita),
-          IsAllDay: false,
-          Description: `${item.objetivoDaVisita}`,
-        }));
-      const consoleVisitasArray = data.map((item) => (
-        item
-      ))
-      console.log(consoleVisitasArray)
-      console.log(visitasData);
-      setVisitasData(tempVisitasArray);
+      const events = await handleVisitaPaginator(start, end);
+      setVisitasData(events);
     } catch (err) {
-      console.log("ERRO: ", err);
+      setError("Falha ao carregar visitas");
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchVisitas();
+    const today = new Date();
+    onNavigating({ action: "date", currentDate: today });
   }, []);
-
   const onNavigating = (args) => {
     if (args.action === "date") {
       const currentDate = args.currentDate;
       const year = currentDate.getFullYear();
-      const month = currentDate.getMonth(); // 0-based
+      const month = currentDate.getMonth();
 
-      // Início: primeiro dia do mês
-      const startDate = new Date(year, month, 1, 0, 0, 0, 0);
+      const startDate = new Date(year, month, 1, -3, 0, 0, 0);
 
-      // Fim: último dia do mês, 23:59
-      const endDate = new Date(year, month + 1, 0, 0, 0, 0, 0);
+      const endDate = new Date(year, month + 1, 0, 20, 59, 0, 0);
 
-      const startDateFormated = startDate.toISOString().slice(0, 10)
-      const startDateFinalFormat = startDate.toISOString().slice(11, 22)
+      const fmtDate = date => date.toISOString().replace("T", " ").slice(0, 19);
 
-      const endDateFormated = endDate.toISOString().slice(0, 10)
-      const endDateFinalFormat = endDate.toISOString().slice(11, 22)
+      const inicio = fmtDate(startDate);
+      const fim = fmtDate(endDate);
 
-      console.log("Início:", startDateFormated, startDateFinalFormat);
-      console.log("Fim:", endDateFormated, endDateFinalFormat);
+      console.log("Início:", inicio);
+      console.log("Fim:", fim);
+
+      console.log("Navegando para intervalo", inicio, "→", fim);
+      handleFetchVisitaPaginator(inicio, fim);
     }
   }
 
+
   return (
     <>
+
+      {error && (
+        <div style={{ color: "red", marginBottom: 8 }}>{error}</div>
+      )}
+      
       <ScheduleComponent
         height="90%"
         width="80%"
@@ -77,6 +72,8 @@ export default function ScheduleDataComponent() {
         </ViewsDirective>
         <Inject services={[Month, MonthAgenda]} />
       </ScheduleComponent>
+
+      <LoadingOverlay open={loading} />
     </>
   );
 }

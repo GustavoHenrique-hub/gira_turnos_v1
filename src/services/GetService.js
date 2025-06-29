@@ -1,30 +1,33 @@
-import { useState, useEffect } from "react";
+const MIN_LOADING_MS = 1000;
 
-// Função do serviço para listar as visitas
-export function handleListVisitas() {
-    const [stateVisitasArray, setStateVisitasArray] = useState([]);
+export async function handleVisitaPaginator(inicio, fim) {
+    console.log("Service: buscando visitas entre", inicio, "e", fim);
+    const url = `http://localhost:8080/visita/visitaPaginator?inicio=${encodeURIComponent(inicio)}&fim=${encodeURIComponent(fim)}`;
 
-    const urlToListVisitas = `http://localhost:8080/visita/listAllVisita`;
+    const loadStart = performance.now();
+    try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Status ${res.status}`);
+        const data = await res.json();
+         console.log(data)
+        // Mapeia para o formato que o ScheduleComponent espera
+        return data.map(item => ({
+            Id: item.id,
+            Subject: `${item.tecnicoNome} - ${item.unidadeNome}`,
+            StartTime: new Date(item.dataHoraInicioVisita),
+            EndTime: new Date(item.dataHoraFimVisita),
+            IsAllDay: false,
+            Description: item.objetivoDaVisita,
+        }));
+    } catch (err) {
+        console.error("Service error:", err);
+        throw err;
+    } finally {
+    const elapsed = performance.now() - loadStart;
+    const remaining = MIN_LOADING_MS - elapsed;
 
-    useEffect(() => {
-        const fetchVisitas = async () => {
-            try {
-                const response = await fetch(urlToListVisitas);
-                const data = await response.json();
-                const tempVisitasArray = data.map((item) => ({
-                    Id: item.id,
-                    Subject: item.nomeCompleto, // Ou qualquer outro campo que queira usar para o título
-                    StartTime: new Date(item.dataHoraInicio), // Usando dataHoraInicio da API
-                    EndTime: new Date(item.dataHoraFim), // Usando dataHoraFim da API
-                    IsAllDay: false,
-                }));
-                setStateVisitasArray(tempVisitasArray);
-            } catch (err) {
-                console.log("ERRO: ", err);
-            }
-        };
-        fetchVisitas();
-    }, []); // Apenas uma vez, quando o componente carregar
-
-    return stateVisitasArray; // Retornando os dados
+     if (remaining > 0) {
+      await new Promise(resolve => setTimeout(resolve, remaining));
+    }
+  }
 }
