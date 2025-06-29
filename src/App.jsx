@@ -21,7 +21,7 @@ import "@syncfusion/ej2-react-schedule/styles/material.css";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import { Box } from "@mui/material";
-import ScheduleDataComponent from "./components/ScheduleComponent/scheduleComponent.jsx";
+import ScheduleDataComponent from "../src/components/scheduleComponent/scheduleComponent.jsx";
 import NavigationSideBarComponent, { NavigationSideBarItem } from "../src/components/SideBarComponent/sideBarComponent.jsx";
 
 //Ícones
