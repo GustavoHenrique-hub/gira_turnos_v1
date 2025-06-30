@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
-const BackButton = styled(Button)(({ theme }) => ({
+const AddListButton = styled(Button)(({ theme }) => ({
     color: 'blue', 
     borderColor: 'blue',
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)", 
@@ -13,4 +13,4 @@ const BackButton = styled(Button)(({ theme }) => ({
     },
   }));
 
-  export default BackButton
+  export default AddListButton

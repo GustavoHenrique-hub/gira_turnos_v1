@@ -182,48 +182,19 @@ const unidade = [
 ];
 
 const tecnico = [
-  {
-    id: 1, nome: "ALLEF BARBOSA", email: "allef.barbosa@libertyti.com.br"
-  },
-  {
-    id: 2, nome: "ANDRE ASSIS", email: "andre.assis@libertyti.com.br"
-  },
-  {
-    id: 3, nome: "AUGUSTO ENGLER", email: "augusto.engler@libertyti.com.br"
-  },
-  {
-    id: 4, nome: "CESAR TEIXEIRA", email: "cesar.teixeira@libertyti.com.br"
-  },
-  {
-    id: 5, nome: "GEOVANNA OLIVEIRA", email: "EXPIRADO"
-  },
-  {
-    id: 6, nome: "GUSTAVO SILVA", email: "gustavo.silva@libertyti.com.br"
-  },
-  {
-    id: 7, nome: "JOAO MARINHO", email: "joao.marinho@libertyti.com.br"
-  },
-  {
-    id: 8, nome: "KAIQUE LORETI", email: "kaique.loreti@libertyti.com.br"
-  },
-  {
-    id: 9, nome: "KAUE RODRIGUES", email: "kaue.rodrigues@libertyti.com.br"
-  },
-  {
-    id: 10, nome: "LUIS SANTOS", email: "luis.santos@libertyti.com.br"
-  },
-  {
-    id: 11, nome: "MATEUS MARINHO", email: "mateus.marinho@libertyti.com.br"
-  },
-  {
-    id: 12, nome: "PEDRO BORGES", email: "pedro.borges@libertyti.com.br"
-  },
-  {
-    id: 13, nome: "VALDEMIR ARAUJO", email: "valdemir.araujo@libertyti.com.br"
-  },
-  {
-    id: 14, nome: "VITOR MARTINS", email: "vitor.martins@libertyti.com.br"
-  }
+  { id: 1, nome: "ALLEF BARBOSA" },
+  { id: 2, nome: "ANDRE ASSIS" },
+  { id: 3, nome: "AUGUSTO ENGLER" },
+  { id: 6, nome: "CESAR TEIXEIRA" },
+  { id: 9, nome: "GUSTAVO SILVA" },
+  { id: 11, nome: "JOAO MARINHO" },
+  { id: 12, nome: "KAIQUE LORETI" },
+  { id: 13, nome: "KAUE RODRIGUES" },
+  { id: 14, nome: "LUIS SANTOS" },
+  { id: 15, nome: "MATEUS MARINHO" },
+  { id: 16, nome: "PEDRO BORGES" },
+  { id: 17, nome: "VALDEMIR ARAUJO" },
+  { id: 19, nome: "VITOR MARTINS" }
 ]
 
 const turno = [
@@ -251,8 +222,8 @@ const localizacao = [
 ]
 
 const escala = [
-  {id: 1, escala: "5x2"},
-  {id: 2, escala: "12x36"}
+  { id: 1, escala: "5x2" },
+  { id: 2, escala: "12x36" }
 ]
 
 const AutocompleteToUse = styled(Autocomplete)(({ theme }) => ({
@@ -267,22 +238,17 @@ const AutocompleteToUse = styled(Autocomplete)(({ theme }) => ({
   }
 }));
 
-export default function AutocompleteTecnico() {
-
-  const [tempState, setTempState] = React.useState(null);
+export default function AutocompleteTecnico({ stateTecnico, setStateTecnico }) {
 
   return (
     <AutocompleteToUse
       options={tecnico}
       sx={{ width: '30%' }}
-      // 2) exibir no campo somente o ID
-      getOptionLabel={opt => `${opt.id} | ${opt.nome}`}
-      // 3) controlar o valor
-      value={tempState}
+      getOptionLabel={opt => opt.nome}
+      value={stateTecnico}
       onChange={(_, newValue) => {
-        // newValue é o objeto completo ou null
-        setTempState(newValue);
-        console.log(newValue.id)
+        setStateTecnico(newValue);
+        console.log(newValue);
       }}
       renderInput={(params) => (
         <TextField {...params} label="Técnico" variant="outlined" />
@@ -291,9 +257,7 @@ export default function AutocompleteTecnico() {
   );
 }
 
-export function AutocompleteUnidade() {
-
-  const [tempState, setTempState] = React.useState(null);
+export function AutocompleteUnidade({ stateUnidade, setStateUnidade }) {
 
   return (
     <AutocompleteToUse
@@ -301,14 +265,11 @@ export function AutocompleteUnidade() {
       sx={{
         width: '30%',
       }}
-      // 2) exibir no campo somente o ID
-      getOptionLabel={opt => `${opt.id} | ${opt.nome}`}
-      // 3) controlar o valor
-      value={tempState}
+      getOptionLabel={opt => opt.nome}
+      value={stateUnidade}
       onChange={(_, newValue) => {
-        // newValue é o objeto completo ou null
-        setTempState(newValue);
-        console.log(newValue.id)
+        setStateUnidade(newValue);
+        console.log(newValue)
       }}
       renderInput={(params) => (
         <TextField {...params} label="Unidade" variant="outlined" />
@@ -317,22 +278,17 @@ export function AutocompleteUnidade() {
   );
 }
 
-export function AutocompleteTurno() {
-
-  const [tempState, setTempState] = React.useState(null);
+export function AutocompleteTurno({ stateTurno, setStateTurno }) {
 
   return (
     <AutocompleteToUse
       options={turno}
       sx={{ width: '30%' }}
-      // 2) exibir no campo somente o ID
-      getOptionLabel={opt => `${opt.id} | ${opt.turno}`}
-      // 3) controlar o valor
-      value={tempState}
+      getOptionLabel={opt => opt.turno}
+      value={stateTurno}
       onChange={(_, newValue) => {
-        // newValue é o objeto completo ou null
-        setTempState(newValue);
-        console.log(newValue.id)
+        setStateTurno(newValue);
+        console.log(newValue)
       }}
       renderInput={(params) => (
         <TextField {...params} label="Turno" variant="outlined" />
@@ -341,22 +297,17 @@ export function AutocompleteTurno() {
   );
 }
 
-export function AutocompleteLocalizacao() {
-
-  const [tempState, setTempState] = React.useState(null);
+export function AutocompleteLocalizacao({ stateLocalizaco, setStateLocalizacao }) {
 
   return (
     <AutocompleteToUse
       options={localizacao}
       sx={{ width: '30%' }}
-      // 2) exibir no campo somente o ID
-      getOptionLabel={opt => `${opt.id} | ${opt.localizacao}`}
-      // 3) controlar o valor
-      value={tempState}
+      getOptionLabel={opt => opt.localizacao}
+      value={stateLocalizaco}
       onChange={(_, newValue) => {
-        // newValue é o objeto completo ou null
-        setTempState(newValue);
-        console.log(newValue.id)
+        setStateLocalizacao(newValue);
+        console.log(newValue)
       }}
       renderInput={(params) => (
         <TextField {...params} label="Localizacao" variant="outlined" />
@@ -365,9 +316,7 @@ export function AutocompleteLocalizacao() {
   );
 }
 
-export function AutocompleteEscala() {
-
-  const [tempState, setTempState] = React.useState(null);
+export function AutocompleteEscala({ stateEscala, setStateEscala }) {
 
   return (
     <AutocompleteToUse
@@ -375,14 +324,11 @@ export function AutocompleteEscala() {
       sx={{
         width: '30%',
       }}
-      // 2) exibir no campo somente o ID
-      getOptionLabel={opt => `${opt.id} | ${opt.escala}`}
-      // 3) controlar o valor
-      value={tempState}
+      getOptionLabel={opt => opt.escala}
+      value={stateEscala}
       onChange={(_, newValue) => {
-        // newValue é o objeto completo ou null
-        setTempState(newValue);
-        console.log(newValue.id)
+        setStateEscala(newValue);
+        console.log(newValue)
       }}
       renderInput={(params) => (
         <TextField {...params} label="Escala" variant="outlined" />

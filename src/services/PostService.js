@@ -2,6 +2,7 @@ const MIN_LOADING_MS = 1000;
 
 export default async function handleInsertVisita(objectInsertVisita) {
     console.log("Service: POST newVisita");
+    console.log("JSON: ", objectInsertVisita)
     const url = `http://localhost:8080/visita/newVisita`;
 
     const loadStart = performance.now();

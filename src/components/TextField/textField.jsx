@@ -10,7 +10,7 @@ const TextFieldObjetivoDaVisita = styled(TextField)(({ theme }) => ({
   },
   '& .MuiInputLabel-outlined.Mui-focused': {
     color: 'black',
-  }
+  },
 }));
 
 export default TextFieldObjetivoDaVisita
