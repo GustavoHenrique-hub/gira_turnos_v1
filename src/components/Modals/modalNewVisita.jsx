@@ -130,7 +130,7 @@ export function ModalNewVisita({ openModal, closeModal }) {
         </Box>
 
         <Box sx={{ mb: 2, display: 'grid', gap: 2 }}>
-          <Box sx={{ display: 'flex', gap: 2 }}>
+          <Box sx={{ display: 'flex', gap: 2, width: '108%' }}>
             <AutocompleteTecnico
               sx={{ flex: 1 }}
               value={stateTecnico}
@@ -147,7 +147,7 @@ export function ModalNewVisita({ openModal, closeModal }) {
               stateEscala={stateEscala}
               setStateEscala={setStateEscala} />
           </Box>
-          <Box sx={{ display: 'flex', gap: 2 }}>
+          <Box sx={{ display: 'flex', gap: 2, width: '100%' }}>
             <AutocompleteUnidade
               sx={{ flex: 1 }}
               value={stateUnidade}
@@ -158,16 +158,6 @@ export function ModalNewVisita({ openModal, closeModal }) {
               value={stateLocalizacao}
               stateLocalizacao={stateLocalizacao}
               setStateLocalizacao={setStateLocalizacao} />
-          </Box>
-
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <TextFieldObjetivoDaVisita
-              sx={{ flex: 1 }}
-              label="Objetivo da Visita"
-              variant='outlined'
-              type='text'
-              value={stateObjetivoDaVisita}
-              onChange={(e) => { setStateObjetivoDaVisita(e.target.value); console.log(e.target.value) }} />
             <TextFieldObjetivoDaVisita
               sx={{ flex: 1 }}
               label="Número Card"
@@ -177,7 +167,18 @@ export function ModalNewVisita({ openModal, closeModal }) {
               onChange={(e) => { setStateNumCard(e.target.value); console.log(e.target.value) }} />
           </Box>
 
-          <Box sx={{ display: 'flex', gap: 2 }}>
+          <Box sx={{ display: 'flex', gap: 2, width: '100%' }}>
+            <TextFieldObjetivoDaVisita
+              sx={{ flex: 1 }}
+              label="Objetivo da Visita"
+              variant='outlined'
+              type='text'
+              value={stateObjetivoDaVisita}
+              onChange={(e) => { setStateObjetivoDaVisita(e.target.value); console.log(e.target.value) }} />
+
+          </Box>
+
+          <Box sx={{ display: 'flex', gap: 2, width: '100%' }}>
             <DateTimeTextField
               label="Data da Visita"
               type="date"
